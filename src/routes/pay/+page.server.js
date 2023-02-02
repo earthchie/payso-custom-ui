@@ -1,6 +1,9 @@
 let payment;
+let requestData;
+let serializeRequestData;
+
 export async function load() {
-    return {payment};
+    return {payment, requestData, serializeRequestData};
 };
 
 export const actions = {
@@ -9,7 +12,7 @@ export const actions = {
 
     const serialize = obj => {
         return Object.keys(obj).map(k=>{
-            return k+'='+obj[k]
+            return k+'='+encodeURIComponent(obj[k])
         }).join('&')
     }
     const params = {
@@ -20,6 +23,8 @@ export const actions = {
       total: formData.get('total'),
       referenceNo: formData.get('referenceNo')
     };
+    console.log(params);
+
     const req =  await fetch('https://apis.paysolutions.asia/tep/api/v2/promptpay?'+serialize(params), {
       method: 'POST',
       headers: {
@@ -28,7 +33,10 @@ export const actions = {
       }
     });
 
-    payment = await req.json();
+    // export back to ./src/pay/+page.svelte
+    requestData = params; // data.requestData
+    serializeRequestData = serialize(params); // data.serializeRequestData
+    payment = await req.json(); // data.payment
 
     console.log(payment);
 

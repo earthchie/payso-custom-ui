@@ -1,6 +1,8 @@
 <script>
     export let data;
     const payment = data.payment;
+    const requestData = data.requestData;
+    const serializeRequestData = data.serializeRequestData;
 
     // time counter
     let diffNow = 0, 
@@ -8,7 +10,7 @@
         remainingSeconds = 0;
 
     $: {
-        if(payment.status === 'success'){
+        if(data && payment.status === 'success'){
 
             const expireAt =  new Date(payment.data.expiredate).getTime();
 
@@ -65,6 +67,22 @@
         <small>(Payso ชอบ Error ไม่มีสาเหตุบ่อยๆ)</small>
     </div>
 {/if}
+
+
+
+<strong>Submitted FormData</strong>
+<pre><code>{JSON.stringify(requestData, null, 4)}</code></pre>
+
+<strong>Curl Command</strong>
+<br>
+<small>กรุณาใส่ <code>[AUTH_KEY]</code> เอง</small>
+<pre><code>curl --location \
+--request POST 'https://apis.paysolutions.asia/tep/api/v2/promptpay?{serializeRequestData}' \
+--header 'Accept: application/json' \
+--header 'authorization: Bearer <code>[AUTH_KEY]</code>'
+</code></pre>
+    
+
 
 <strong>Raw Reponse from Paysolutions</strong>
 <pre><code>{JSON.stringify(payment, null, 4)}</code></pre>
