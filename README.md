@@ -1,9 +1,25 @@
-copy ไฟล์ env แล้วใส่ payso merchant id กับ auth token ลงไปด้วย
+# วิธีรัน
+
+```
+git clone https://github.com/earthchie/payso-custom-ui.git
+cd payso-custom-ui
+npm install
+```
+
+จากนั้น copy ไฟล์ env แล้วใส่ payso merchant id กับ auth token ลงไปด้วย
 
 ```
 cp .env.example .env
 nano .env
 ```
+
+เสร็จแล้วรันได้
+
+```
+npm run dev -- --open
+```
+
+มันจะเปิด browser ขึ้นมาให้อัตโนมัติ
 
 -----
 
