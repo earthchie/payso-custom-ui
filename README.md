@@ -1,4 +1,18 @@
-# วิธีรัน
+# Paysolutions Custom UI Demo
+
+โปรเจคนี้เขียนด้วย [SveltKit3](https://kit.svelte.dev/) สำหรับคนที่ไม่เคยเขียน หลักๆ ให้ดู 
+
+1. ไฟล์ `./src/app.html` คือไฟล์ html หลัก ใส่ header, body ตรงนี้
+
+2. ไฟล์ `./src/routes/+page.svelte` คือหน้าแรกของโปรเจค ในกรณีนี้เป็นโค้ดที่เกี่ยวข้องกับฟอร์มการชำระเงินทั้งหมด
+
+3. ไฟล์ `./src/routes/pay/+page.svelte` เป็น html ของหน้าหลังจากกดส่งฟอร์มแล้ว (หน้าชำระเงิน) ซึ่งจะแสดงผลโดยใช้ข้อมูลจาก `./src/routes/pay/+page.server.js`
+
+4. ไฟล์ `./src/routes/pay/+page.server.js` คือไฟล์ที่รับ form data จากหน้าแรก (จาก `./src/routes/+page.svelte`) นำไป api request ยิงไปหา payso เพื่อขอ QRCode สำหรับชำระเงิน ส่วนของ API Response จะส่งกลับไปแสดงผลที่ `./src/routes/pay/+page.svelte`
+
+# วิธีรันโปรเจค
+
+ลง nodejs ให้เรียบร้อย
 
 ```
 git clone https://github.com/earthchie/payso-custom-ui.git
