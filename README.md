@@ -2,7 +2,7 @@ copy ไฟล์ env แล้วใส่ payso merchant id กับ auth tok
 
 ```
 cp .env.example .env
-ืnano .env
+nano .env
 ```
 
 -----
